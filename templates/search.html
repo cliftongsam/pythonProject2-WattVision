@@ -1,0 +1,84 @@
+<!--Search function html code and style-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Power Consumption Data</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom right, #fff5f5, #ffe3e3);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+        }
+        .container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px 40px;
+            max-width: 500px;
+            width: 100%;
+        }
+        h1 {
+            text-align: center;
+            color: #d9534f;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-top: 10px;
+        }
+        input[type="text"],
+        input[type="submit"],
+        .button {
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        input[type="submit"],
+        .button {
+            background-color: #d9534f;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+        input[type="submit"]:hover,
+        .button:hover {
+            background-color: #c9302c;
+        }
+        .button {
+            text-decoration: none;
+            text-align: center;
+            display: inline-block;
+            width: auto;
+            padding: 10px 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Search Power Consumption Records</h1>
+        <form action="/search_results" method="post">
+            <label for="datetime">Datetime (YYYY-MM-DD HH:MM):</label>
+            <input type="text" id="datetime" name="datetime" placeholder="YYYY-MM-DD HH:MM" required>
+
+            <label for="zoneid">Zone ID:</label>
+            <input type="text" id="zoneid" name="zoneid" placeholder="Zone ID" required>
+
+            <input type="submit" value="Search">
+            <a href="{{ url_for('homepage') }}" class="button">Back to Homepage</a>
+        </form>
+    </div>
+</body>
+</html>

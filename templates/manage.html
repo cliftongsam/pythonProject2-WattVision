@@ -1,0 +1,90 @@
+<!--Manage function html code and style-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Records</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to top right, #fff5f5, #ffe3e3);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            color: #333;
+        }
+        .container {
+            background-color: white;
+            padding: 20px 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+        h1 {
+            text-align: center;
+            color: #d9534f;
+            margin-bottom: 30px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        select, .button {
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin: 10px 0;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .button {
+            background-color: #d9534f;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-align: center;
+            display: block;
+            text-decoration: none;
+        }
+        .button:hover {
+            background-color: #c9302c;
+        }
+        input[type="submit"] {
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Manage Database Records</h1>
+        <form action="{{ url_for('manage_action') }}" method="post">
+            <label for="operation">Choose an operation:</label>
+            <select id="operation" name="operation">
+                <option value="insert">Insert</option>
+                <option value="delete">Delete</option>
+            </select>
+
+            <label for="collection">Choose a collection:</label>
+            <select id="collection" name="collection">
+                <option value="environmental_factors">Environmental Factors</option>
+                <option value="power_consumption">Power Consumption</option>
+                <option value="Zone">Zone</option>
+            </select>
+
+            <input type="submit" value="Next" class="button">
+        </form>
+
+        <a href="{{ url_for('homepage') }}" class="button">Back to Homepage</a>
+    </div>
+</body>
+</html>

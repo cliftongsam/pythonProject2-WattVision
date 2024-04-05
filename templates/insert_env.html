@@ -1,0 +1,121 @@
+<!--insert into environmental collection html code and style-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Insert Record</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom right, #fff5f5, #ffe3e3);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+        h1 {
+            color: #d9534f;
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        label {
+            font-weight: bold;
+            color: #555;
+        }
+        input[type="text"],
+        input[type="number"] {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            outline: none;
+        }
+        input[type="text"]:focus,
+        input[type="number"]:focus {
+            border-color: #d9534f;
+            box-shadow: 0 0 0 2px rgba(217, 83, 79, 0.2);
+        }
+        .flash-messages {
+            color: green;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+        input[type="submit"], .back-to-manage {
+            background-color: #d9534f;
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s ease;
+        }
+        input[type="submit"]:hover, .back-to-manage:hover {
+            background-color: #c9302c;
+        }
+        .button-container {
+            display: flex;
+            gap: 15px; /* Creates gap between buttons */
+        }
+        .button-container input[type="submit"],
+        .button-container .back-to-manage {
+            flex: 1; /* Makes both buttons flex items with equal width */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Insert Environmental Factor Record</h1>
+
+        <!-- Area to display flash messages -->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <!-- Form for insertion -->
+        <form action="{{ url_for('insert_environmental_factors', collection_name='environmental_factors') }}" method="post">
+            <label for="datetime">Datetime (YYYY-MM-DD HH:MM:SS):</label>
+            <input type="text" id="datetime" name="datetime" placeholder="YYYY-MM-DD HH:MM:SS" required>
+
+            <label for="envfactorid">EnvFactorID (Integer):</label>
+            <input type="number" id="envfactorid" name="envfactorid" required>
+
+            <label for="temperature">Temperature (Double):</label>
+            <input type="text" id="temperature" name="temperature" required>
+
+            <label for="windspeed">WindSpeed (Double):</label>
+            <input type="text" id="windspeed" name="windspeed" required>
+
+            <label for="humidity">Humidity (Double):</label>
+            <input type="text" id="humidity" name="humidity" required>
+
+            <div class="button-container">
+                <input type="submit" value="Insert Record">
+                <button type="button" class="back-to-manage" onclick="window.location.href='{{ url_for('manage') }}';">
+                 Back to Manage
+                </button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

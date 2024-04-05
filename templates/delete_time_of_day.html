@@ -1,0 +1,17 @@
+<!--NOT ABLE TO EXECUTE THE DELETE OPERATION-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Time of Day Record</title>
+</head>
+<body>
+    <h1>Delete Time of Day Record</h1>
+    <form action="{{ url_for('/delete_time_of_day') }}" method="post">
+        <label for="id">Time of Day ID:</label>
+        <input type="text" id="id" name="id" placeholder="Enter Time of Day ID" required>
+        <input type="submit" value="Delete Record">
+    </form>
+    <a href="{{ /url_for('manage') }}">Back to Manage Options</a>
+</body>
+</html>

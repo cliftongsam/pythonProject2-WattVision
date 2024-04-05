@@ -1,0 +1,76 @@
+<!--Homepage html code and style-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Power Consumption Prediction</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(to bottom, #fff5f5, #ffe3e3);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            max-width: 700px;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            text-align: center;
+        }
+        h1 {
+            color: #d04a4a;
+            margin-bottom: 40px;
+            font-weight: bold
+
+        }
+        .btn-custom {
+            font-size: 18px;
+            padding: 10px 30px;
+            background-color: #d9534f;
+            color: white;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            margin: 10px; /* Adds spacing between buttons */
+            border: 2px solid transparent;
+        }
+        .btn-custom:hover, .btn-custom:focus {
+            background-color: #c9302c;
+            color: white;
+            border-color: #c9302c;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .logout a {
+            font-size: 16px;
+            color: #d9534f;
+            transition: color 0.3s ease;
+        }
+        .logout a:hover {
+            color: #c9302c;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tetouan Power</h1>
+        <div>
+            <button onclick="location.href='/search'" class="btn btn-custom">Search</button>
+            <button onclick="location.href='/predict'" class="btn btn-custom">Forecast</button>
+            <button onclick="location.href='/manage'" class="btn btn-custom">Manage</button>
+        </div>
+        <div class="logout mt-5">
+            <a href="/login">Logout</a>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

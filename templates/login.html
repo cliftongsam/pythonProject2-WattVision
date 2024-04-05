@@ -1,0 +1,64 @@
+<!--login html code and style-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom right, #fff1f1, #ffebeb); /* Faint white and red background */
+            color: #333;
+        }
+        h1 {
+            color: #d04a4a; /* Dark red color for the heading */
+            margin-bottom: 20px;
+        }
+        form {
+            background: rgba(255, 255, 255, 0.8); /* Slightly transparent white */
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+            width: 300px; /* Fixed form width */
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: calc(100% - 20px); /* Full width minus padding */
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px; /* Rounded borders */
+            box-sizing: border-box; /* Include padding and border in element's width */
+        }
+        input[type="submit"] {
+            width: 100%;
+            color: white;
+            padding: 14px 20px;
+            margin: 20px 0;
+            border: none;
+            border-radius: 5px; /* Rounded borders */
+            background-color: #d04a4a; /* Matching dark red background */
+            cursor: pointer; /* Cursor changes to pointer on hover */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow for the button */
+            transition: background-color 0.3s ease; /* Smooth transition for background color */
+        }
+        input[type="submit"]:hover {
+            background-color: #b04040; /* Slightly darker red on hover */
+        }
+    </style>
+</head>
+<body>
+    <form method="post">
+        <h1>Login</h1>
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <input type="submit" value="Login">
+    </form>
+</body>
+</html>

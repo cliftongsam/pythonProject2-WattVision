@@ -1,0 +1,131 @@
+<!--insert into environmental collection html code and style-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Insert Power Consumption Record</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #fff5f5, #ffe3e3);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+        }
+        .container {
+            background-color: white;
+            padding: 20px 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+        h1 {
+            text-align: center;
+            color: #d9534f;
+            margin-bottom: 30px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="number"],
+        input[type="submit"],
+        .button {
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            outline: none;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+        input[type="text"]:focus,
+        input[type="number"]:focus {
+            border-color: #d9534f;
+            box-shadow: 0 0 0 2px rgba(217, 83, 79, 0.2);
+        }
+        input[type="submit"] {
+            background-color: #d9534f;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+        input[type="submit"]:hover {
+            background-color: #c9302c;
+        }
+        .flash-messages {
+            color: green;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .back-link a {
+            background-color: #d9534f;
+            color: white;
+            padding: 12px;
+            border-radius: 5px;
+            text-decoration: none;
+            text-align: center;
+            display: block;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+        .back-link a:hover {
+            background-color: #c9302c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Insert Power Consumption Record</h1>
+
+        <!--to display flash messages -->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <form action="{{ url_for('insert_power_consumption') }}" method="post">
+            <label for="datetime">DateTime (YYYY-MM-DD HH:MM:SS):</label>
+            <input type="text" id="datetime" name="datetime" required>
+
+            <label for="envfactorid">EnvFactorID:</label>
+            <input type="number" id="envfactorid" name="envfactorid" required>
+
+            <label for="powerconsumption">Power Consumption:</label>
+            <input type="text" id="powerconsumption" name="powerconsumption" required>
+
+            <label for="timeofday">Time of Day:</label>
+            <input type="text" id="timeofday" name="timeofday" required>
+
+            <label for="zoneid">ZoneID:</label>
+            <input type="text" id="zoneid" name="zoneid" required>
+
+            <label for="recordid">RecordID:</label>
+            <input type="number" id="recordid" name="recordid" required>
+
+            <input type="submit" value="Insert Record">
+        </form>
+
+        <div class="back-link">
+            <a href="{{ url_for('manage') }}">Back to Manage Options</a>
+        </div>
+    </div>
+</body>
+</html>

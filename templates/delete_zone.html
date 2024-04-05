@@ -1,0 +1,16 @@
+<!--NOT ABLE TO EXECUTE THE DELETE OPERATION-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Zone Record</title>
+</head>
+<body>
+    <h1>Delete Zone Record</h1>
+    <form action="{{ url_for('/delete_zone') }}" method="post">
+        <label for="ZoneID">Zone ID:</label>
+        <input type="text" id="ZoneID" name="ZoneID" placeholder="Enter Zone ID" required>
+        <input type="submit" value="Delete Record">
+    </form>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!--Search result html code and style-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Results</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to top right, #fff5f5, #ffe3e3);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        h1, h2 {
+            color: #d9534f;
+            margin: 20px 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 90%;
+            max-width: 800px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        img {
+            max-width: 90%;
+            height: auto;
+            margin-top: 20px;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #d9534f;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.2s ease;
+        }
+        .button:hover {
+            background-color: #c9302c;
+        }
+    </style>
+</head>
+<body>
+    <h1>Search Results</h1>
+    {% if results %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Datetime</th>
+                    <th>Zone ID</th>
+                    <th>Power Consumption</th>
+                    <th>Temperature (°C)</th>
+                    <th>Wind Speed (km/h)</th>
+                    <th>Humidity (%)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for result in results %}
+                    <tr>
+                        <td>{{ result['Datetime'] }}</td>
+                        <td>{{ result['ZoneID'] }}</td>
+                        <td>{{ result['PowerConsumption'] }}</td>
+                        <td>{{ result['Temperature'] }}</td>
+                        <td>{{ result['WindSpeed'] }}</td>
+                        <td>{{ result['Humidity'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No detailed results found for the given criteria.</p>
+    {% endif %}
+    {% if image_file %}
+        <h2>Power Consumption Graph</h2>
+        <img src="{{ url_for('static', filename=power_consumption_day.png) }}?{{ cache_bust }}" alt="Power Consumption Graph">
+{% endif %}
+<a href="{{ url_for('homepage') }}" class="button">Back to Homepage</a>
+</body>
+</html>

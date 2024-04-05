@@ -1,0 +1,42 @@
+<!--THIS INSERTION NOT REQUIRED-->
+<!--insert into time of day collection html code and style-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Insert Time of Day Record</title>
+    <style>
+        .flash-messages {
+            color: green;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Insert Time of Day Record</h1>
+
+    <!-- to display flash messages -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Form for insertion -->
+    <form action="{{ url_for('/insert_time_of_day') }}" method="post">
+        <label for="description">Description:</label>
+        <input type="text" id="description" name="description" required>
+
+        <label for="id">ID:</label>
+        <input type="text" id="id" name="id" required>
+
+        <input type="submit" value="Insert Record">
+    </form>
+
+    <a href="{{ url_for('manage') }}">Back to Manage Options</a>
+</body>
+</html>
