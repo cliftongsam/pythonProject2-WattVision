@@ -205,7 +205,7 @@ def insert_environmental_factors():
             wind_speed = float(request.form['windspeed'])
             humidity = float(request.form['humidity'])
 
-            db.environmental_factors.insert_one({
+            db.collection2.insert_one({
                 "Datetime": datetime_obj,
                 "EnvFactorID": env_factor_id,
                 "Temperature": Decimal128(str(temperature)),
@@ -225,7 +225,7 @@ def insert_environmental_factors():
 @app.route('/insert/time_of_day', methods=['GET', 'POST'])
 def insert_time_of_day():
     if request.method == 'POST':
-        db.time_of_day.insert_one({
+        db.collection3.insert_one({
             "description": request.form['description'],
             "id": request.form['id']
         })
@@ -243,7 +243,7 @@ def insert_zone():
         zone_name = request.form['zonename']
 
         # Inserting the new zone record into the database
-        db.zone.insert_one({
+        db.collection4.insert_one({
             "LocationDescription": location_description,
             "ZoneID": zone_id,
             "ZoneName": zone_name
@@ -267,7 +267,7 @@ def insert_power_consumption():
             zone_id = request.form['zoneid']
             record_id = int(request.form['recordid'])
 
-            db.power_consumption.insert_one({
+            db.collection1.insert_one({
                 "DateTime": datetime_str,  # Storing as a string asd datetime is in string
                 "EnvFactorID": env_factor_id,
                 "PowerConsumption": power_consumption,
@@ -290,7 +290,7 @@ def insert_power_consumption():
 def delete_zone():
     zone_id = request.form.get('ZoneID')
     try:
-        result = db.Zone.delete_one({"ZoneID": zone_id})
+        result = db.collection4.delete_one({"ZoneID": zone_id})
         if result.deleted_count > 0:
             flash('Zone record deleted successfully!')
             return redirect(url_for('delete_zone'))
@@ -314,7 +314,7 @@ def confirm_delete_zone(zone_id):
 def delete_time_of_day():
     time_of_day_id = request.form.get('id')
     try:
-        result = db.time_of_day.delete_one({"id": time_of_day_id})
+        result = db.collection3.delete_one({"id": time_of_day_id})
         if result.deleted_count > 0:
             flash('Time of Day record deleted successfully!')
         else:
@@ -338,21 +338,21 @@ def predict_form():
 
 @app.route('/predict_power', methods=['POST'])
 def predict_power():
-    # Retrieve values from the form
+    # Retrieving values from the form
     temperature = request.form.get('temperature', type=float, default=np.nan)
     windspeed = request.form.get('windspeed', type=float, default=np.nan)
     humidity = request.form.get('humidity', type=float, default=np.nan)
 
-    # Create a DataFrame to handle the inputs; NaN values are replaced with 0.0
+    # Creating a DataFrame to handle the inputs; NaN values are replaced with 0.0
     df = pd.DataFrame([[temperature, windspeed, humidity]], columns=['temperature', 'windspeed', 'humidity'])
     df.fillna(0.0, inplace=True)
-    features = df.to_numpy()
+    features = df.to_numpy()  # prepare data for processing with libraries that require input data in NumPy array format
 
-    # Make the prediction using the preloaded model
+    # Making the prediction using the preloaded model
     predicted_value = sgd_regressor.predict(features)[0]
     prediction_text = f'Predicted Power Consumption: {predicted_value:.2f} kWh'
 
-    # Render a template with the prediction result
+    # Rendering a template with the prediction result
     return render_template('result.html', prediction=prediction_text)
 
 
