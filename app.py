@@ -205,7 +205,7 @@ def insert_environmental_factors():
             wind_speed = float(request.form['windspeed'])
             humidity = float(request.form['humidity'])
 
-            db.collection2.insert_one({
+            db.environmental_factors.insert_one({
                 "Datetime": datetime_obj,
                 "EnvFactorID": env_factor_id,
                 "Temperature": Decimal128(str(temperature)),
@@ -225,7 +225,7 @@ def insert_environmental_factors():
 @app.route('/insert/time_of_day', methods=['GET', 'POST'])
 def insert_time_of_day():
     if request.method == 'POST':
-        db.collection3.insert_one({
+        db.time_of_day.insert_one({
             "description": request.form['description'],
             "id": request.form['id']
         })
@@ -243,7 +243,7 @@ def insert_zone():
         zone_name = request.form['zonename']
 
         # Inserting the new zone record into the database
-        db.collection4.insert_one({
+        db.Zone.insert_one({
             "LocationDescription": location_description,
             "ZoneID": zone_id,
             "ZoneName": zone_name
@@ -267,7 +267,7 @@ def insert_power_consumption():
             zone_id = request.form['zoneid']
             record_id = int(request.form['recordid'])
 
-            db.collection1.insert_one({
+            db.power_consumption.insert_one({
                 "DateTime": datetime_str,  # Storing as a string asd datetime is in string
                 "EnvFactorID": env_factor_id,
                 "PowerConsumption": power_consumption,
